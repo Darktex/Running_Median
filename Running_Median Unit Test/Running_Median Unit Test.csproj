@@ -50,7 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="TestMedianFinder.cs" />
+    <Compile Include="TestMinHeap.cs" />
+    <Compile Include="TestMaxHeap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

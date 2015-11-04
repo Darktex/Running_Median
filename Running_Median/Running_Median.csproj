@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MaxHeap.cs" />
+    <Compile Include="MedianFinder.cs" />
     <Compile Include="MinHeap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

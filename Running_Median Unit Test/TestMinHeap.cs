@@ -7,44 +7,44 @@ using System.Linq;
 namespace Running_Median_Unit_Test
 {
     [TestClass]
-    public class TestMaxHeap
+    public class TestMinHeap
     {
 
         [TestMethod]
         public void TestInsert()
         {
             var list = new List<int> { 1, 9, 3, 6, 5, 2, 7, 11, 9 };
-            var maxHeap = new MaxHeap();
+            var minHeap = new MinHeap();
 
-            list.ForEach(elem => maxHeap.Add(elem));
+            list.ForEach(elem => minHeap.Add(elem));
 
-            Assert.AreEqual(11, maxHeap.peekMax());
+            Assert.AreEqual(1, minHeap.peekMin());
         }
 
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException))]
         public void testRemoveMaxWhenEmpty() {
-            var maxHeap = new MaxHeap();
-            maxHeap.removeMax();
+            var minHeap = new MaxHeap();
+            minHeap.removeMax();
         }
 
         [TestMethod]
         public void testBunchOfInsertionsAndDeletions()
         {
-            var list = new List<int> { 74, 101, 11, 1000, 4, -101, -1000 };
-            var maxHeap = new MaxHeap();
+            var list = new List<double> { 74, 101, 11, 1000, 4, -101, -1000 };
+            var minHeap = new MinHeap();
 
-            list.ForEach(elem => maxHeap.Add(elem));
+            list.ForEach(elem => minHeap.Add(elem));
 
             list.Sort();
-            var maxes = new List<int>();
+            var mins = new List<double>();
 
             for (int i = 0; i < list.Count; i++)
             {
-                maxes.Add(maxHeap.removeMax());
+                mins.Add(minHeap.removeMin());
             }
 
-            List<Tuple<int, int>> expectedVsActual = list.Zip(maxes, Tuple.Create).ToList();
+            List<Tuple<double, double>> expectedVsActual = list.Zip(mins, Tuple.Create).ToList();
 
             foreach(var tuple in expectedVsActual)
             {
