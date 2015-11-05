@@ -39,7 +39,8 @@ namespace Running_Median
             double result = A[0];
             swap(0, A.Count - 1);
             A.RemoveAt(A.Count - 1);
-            sink();
+            if (A.Count > 0)
+                sink();
 
             return result;
         }
@@ -50,20 +51,28 @@ namespace Running_Median
             int leftChildIdx = 2 * parentIdx + 1;
             int rightChildIdx = 2 * parentIdx + 2;
 
-            if (A.Count == 2 && A[0] < A[1]) swap(0, 1);
-            if (A.Count == 3)
+            if (A.Count == 1) return;
+            if (A.Count == 2)
             {
-                if (A[0] < A[1])
+                if(A[0] < A[1])
                     swap(0, 1);
-                else if (A[0] < A[2])
-                    swap(0, 2);
+                return;
             }
+
 
                 double parent = A[0];
                 double leftChild = A[leftChildIdx];
                 double rightChild = A[rightChildIdx];
 
-                while (parent < leftChild || parent < rightChild)
+            if (A.Count == 3)
+            {
+                int biggerChildIdx = (rightChild > leftChild) ? rightChildIdx : leftChildIdx;
+                if (A[0] < A[biggerChildIdx])
+                    swap(0, biggerChildIdx);
+                return;
+            }
+
+            while (parent < leftChild || parent < rightChild)
                 {
                     int biggerChildIdx = (rightChild > leftChild) ? rightChildIdx : leftChildIdx;
                     swap(parentIdx, biggerChildIdx);
